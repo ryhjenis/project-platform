@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>yh.platform.project</groupId>
+	<artifactId>project-platform-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- 项目发布地址指的是推送JAR包到私服地址 -->
+	<!-- 
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>nexus-releases</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>nexus-snapshots</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+ 	-->
+ 	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://localhost:8081/nexus/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://localhost:8081/nexus/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+ 	
+	<!-- 私服仓库地址配置 -->
+	<!-- 
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus-repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>nexus-repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	-->
+	
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus-repository</name>
+			<url>http://localhost:8081/nexus/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>nexus-repository</name>
+			<url>http://localhost:8081/nexus/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- JDK版本 -->
+		<jdk1.6.version>1.6</jdk1.6.version>
+		<jdk1.7.version>1.7</jdk1.7.version>
+		<jdk1.8.version>1.8</jdk1.8.version>
+		
+		<!-- 微服务相关依赖 -->
+		<zookeeper.version>3.4.8</zookeeper.version>
+		<zkclient.version>0.1</zkclient.version>
+		<dubbo.version>2.5.3</dubbo.version>
+		
+		<!-- 测试依赖包 -->
+		<junit.version>3.8.1</junit.version>
+		
+		<!-- JAVAX基础包 -->
+		
+		<!-- MAVEN插件 -->
+		<maven.resources.plugin.version>2.4</maven.resources.plugin.version>
+		
+		<!-- SPRING框架相关 -->
+		
+		<!-- MYBATIS相关 -->
+		
+		<!-- HIBERNATE框架 -->	
+		
+		<!-- 缓存相关-->
+		
+		<!-- 公共工具 -->
+		
+		<!-- APACHE框架 -->
+		
+		<!-- JOBSS框架相关  -->	
+		
+		<!-- 日志相关 -->
+		
+		<!-- 数据库驱动以及连接池相关 -->
+		
+	</properties>
+
+	<modules>
+		<module>project-platform-apps</module>
+		<module>project-platform-servers</module>
+		<module>project-platform-libs</module>
+	</modules>
+
+	<!-- 父类全局依赖包定义部分,只是定义,对应的子工程想使用需要引入即可 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- 父类全局依赖包定义部分,直接引入了,对应子工程不需要在引入 -->
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>${dubbo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>${zkclient.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk1.8.version}</source>
+					<target>${jdk1.8.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven.resources.plugin.version}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
