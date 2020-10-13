@@ -105,7 +105,7 @@
 		<dubbo.version>2.5.3</dubbo.version>
 		
 		<!-- 测试依赖包 -->
-		<junit.version>3.8.1</junit.version>
+		<junit.version>4.13.1</junit.version>
 		
 		<!-- JAVAX基础包 -->
 		
