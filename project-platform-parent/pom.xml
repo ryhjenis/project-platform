@@ -102,7 +102,7 @@
 		<!-- 微服务相关依赖 -->
 		<zookeeper.version>3.4.8</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
-		<dubbo.version>2.5.3</dubbo.version>
+		<dubbo.version>2.6.9</dubbo.version>
 		
 		<!-- 测试依赖包 -->
 		<junit.version>3.8.1</junit.version>
