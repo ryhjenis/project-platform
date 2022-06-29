@@ -100,7 +100,7 @@
 		<jdk1.8.version>1.8</jdk1.8.version>
 		
 		<!-- 微服务相关依赖 -->
-		<zookeeper.version>3.4.8</zookeeper.version>
+		<zookeeper.version>3.4.14</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
 		<dubbo.version>2.5.3</dubbo.version>
 		
